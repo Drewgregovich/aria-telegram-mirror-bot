@@ -8,8 +8,8 @@ import details = require('../dl_model/detail');
 import dlm = require('../dl_model/dl-manager');
 var dlManager = dlm.DlManager.getInstance();
 
-const PROGRESS_MAX_SIZE = Math.floor(100 / 8);
-const PROGRESS_INCOMPLETE = ['▏', '▎', '▍', '▌', '▋', '▊', '▉'];
+const PROGRESS_MAX_SIZE = Math.floor(100 / 5);
+const PROGRESS_INCOMPLETE = ['○', '○', '○', '○', '○'];
 
 export function deleteDownloadedFile(subdirName: string): void {
   fs.remove(`${constants.ARIA_DOWNLOAD_LOCATION}/${subdirName}`)
@@ -164,14 +164,15 @@ export interface StatusMessage {
 function generateProgress(p: number): string {
   p = Math.min(Math.max(p, 0), 100);
   var str = '[';
-  var cFull = Math.floor(p / 8);
-  var cPart = p % 8 - 1;
-  str += '█'.repeat(cFull);
+  var cFull = Math.floor(p / 5);
+  var cPart = p % 5 - 1;
+  str += '●'.repeat(cFull);
   if (cPart >= 0) {
     str += PROGRESS_INCOMPLETE[cPart];
   }
-  str += ' '.repeat(PROGRESS_MAX_SIZE - cFull);
-  str = `${str}] ${p}%`;
+  str += '○'.repeat(PROGRESS_MAX_SIZE - cFull);
+  str = `${str}] \nProgress: ${p}%`;
+
 
   return str;
 }
