@@ -13,8 +13,24 @@ export class EventRegex {
 
     if (constants.COMMANDS_USE_BOT_NAME && constants.COMMANDS_USE_BOT_NAME.ENABLED) {
       commands.forEach((command, i) => {
-        if (command === '^/start', '^/zip', '^/darpan', '^/sthiti', '^/files', '^/folder', '^/kill', '^/killAll', '^/usage') {
+        if (command === '^/start') {
           // In case of more than one of these bots in the same group, we want all of them to respond to /list
+          commands[i] = command + commandAfter[i];
+        } else if (command === '^/zip') {
+          commands[i] = command + commandAfter[i];
+        } else if (command === '^/darpan') {
+          commands[i] = command + commandAfter[i];
+        } else if (command === '^/sthiti') {
+          commands[i] = command + commandAfter[i];
+        } else if (command === '^/files') {
+          commands[i] = command + commandAfter[i];
+        } else if (command === '^/folder') {
+          commands[i] = command + commandAfter[i];
+        } else if (command === '^/kill') {
+          commands[i] = command + commandAfter[i];
+        } else if (command === '^/killAll') {
+          commands[i] = command + commandAfter[i];
+        } else if (command === '^/usage') {
           commands[i] = command + commandAfter[i];
         } else {
           commands[i] = command + constants.COMMANDS_USE_BOT_NAME.NAME + commandAfter[i];
